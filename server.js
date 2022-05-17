@@ -54,4 +54,20 @@ app.post('/books', async (req, res) => {
     }
 })
 
+app.put('/books/:id', async (req,res) => {
+    try {
+       res.json(await Books.findByIdAndUpdate(req.params.id, req.body)) 
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+app.delete('/books/:id', async (req, res) => {
+    try {
+        res.json(await Books.findByIdAndRemove(req.params.id))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
