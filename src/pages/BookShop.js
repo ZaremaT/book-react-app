@@ -4,12 +4,20 @@ function BookShop() {
     const [books, setBooks] = useState(null)
     function getBooks() {
         fetch('https://www.googleapis.com/books/v1/volumes?q=search+terms')
-        .then(res => res.json())
-        .then(setBooks(res))
+        .then((res) => res.json())
+        .then((res) => setBooks(res.results))
     }
+
+    useEffect(() => {
+        getBooks();
+    }, [])
+
+    console.log(books);
+
     return (
         <>
-        <h1>“Good friends, good books, and a sleepy conscience: this is the ideal life.” </h1>
+        {/* <h1>“Good friends, good books, and a sleepy conscience: this is the ideal life.” </h1> */}
+         {books ? books.map() : <h3> Loading </h3>}
         </>
     )
     }
