@@ -42,7 +42,7 @@ function BookShopPage() {
                 'author': book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : "N/A",
                 'category': book.volumeInfo.categories ? book.volumeInfo.categories.join(', ') : "N/A",
                 'image': book.volumeInfo.imageLinks.thumbnail,
-                'review': book.volumeInfo.description
+                'description': book.volumeInfo.description
             })
         }).then(response => response.json()).then(data => {
             console.log(data)
