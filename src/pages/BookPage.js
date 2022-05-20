@@ -28,7 +28,7 @@ function BookPage() {
     }
 
     function addReview(book, review) {
-        if (review.length != 0) {
+        if (review.length !== 0) {
             book.reviews.push(review)
         }
         fetch(`${BACKEND_URL}/books/${book._id}`,
@@ -55,6 +55,7 @@ function BookPage() {
     }
 
     useEffect(() => {
+        console.log(id)
         getBook(id.id);
     }, [])
 
