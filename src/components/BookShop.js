@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom'
-
 function BookShop(props) {
-    console.log(props.books);
 
     return (
         <div>
@@ -15,7 +12,7 @@ function BookShop(props) {
                     <h2>{book.volumeInfo.description}</h2>
                     <button type="button" onClick={() => props.addme(book)}>Add Me!</button>
                 </div>
-            )) : <h3>Loading</h3>}
+            )) : <h1>No Results (Try searching for books!)</h1>}
         </div>
     )
 }

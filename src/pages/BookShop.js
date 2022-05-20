@@ -32,9 +32,9 @@ function BookShopPage() {
         getBooks(e.target.value)
     }
     function addBook(book) {
-        const BACKEND_URL = 'https://obscure-chamber-02994.herokuapp.com/add'
+        const BACKEND_URL = 'https://obscure-chamber-02994.herokuapp.com'
         console.log(book.volumeInfo.categories)
-        fetch('https://obscure-chamber-02994.herokuapp.com/books', {
+        fetch(`${BACKEND_URL}/books`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -51,7 +51,7 @@ function BookShopPage() {
 
 
     useEffect(() => {
-        getBooks('default');
+        setBooks({results: null})
     }, [])
 
     const loaded = () => {

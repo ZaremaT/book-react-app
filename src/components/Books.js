@@ -13,7 +13,7 @@ function Books(props) {
                     <hr />
                     <img src={book.image} alt={book.alt} />
                     <h2>{book.description}</h2>
-                    <button type="button" class="deletebook" onClick={() => props.deleteme(book._id)}>Delete Me!</button>
+                    <button type="button" className="deletebook" onClick={() => props.deleteme(book._id)}>Delete Me!</button>
                 </div>
             )) : <h3>Loading</h3>}
         </div>
