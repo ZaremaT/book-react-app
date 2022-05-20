@@ -31,6 +31,24 @@ function BookShopPage() {
     function handleChange(e) {
         getBooks(e.target.value)
     }
+    function addBook(book) {
+        const BACKEND_URL = 'https://obscure-chamber-02994.herokuapp.com/add'
+        console.log(book.volumeInfo.categories)
+        fetch('https://obscure-chamber-02994.herokuapp.com/books', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'title': book.volumeInfo.title,
+                'author': book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : "N/A",
+                'category': book.volumeInfo.categories ? book.volumeInfo.categories.join(', ') : "N/A",
+                'image': book.volumeInfo.imageLinks.thumbnail,
+                'review': book.volumeInfo.description
+            })
+        }).then(response => response.json()).then(data => {
+            console.log(data)
+        })
+    }
+
 
     useEffect(() => {
         getBooks('default');
@@ -40,7 +58,7 @@ function BookShopPage() {
         return (
             <div>
                 <BookSearch handleChange={handleChange} />
-                <BookShop books={books.results} />
+                <BookShop books={books.results} addme={addBook} />
             </div>
         )
     };
