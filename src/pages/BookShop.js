@@ -1,56 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router";
-
-
-    function getBooks(search) {
-    fetch( + search)
-    .then((res) => res.json())
-    .then((res) => setBooks(res.results))
-}
+import BookSearch from '../components/BookSearch';
+import BookShop from '../components/BookShop';
 
 function BookShopPage() {
-    const URL = 'https://www.googleapis.com/books/v1/volumes?q=';
-    
+    const URL = 'https://www.googleapis.com/books/v1/volumes?maxResults=10&q=';
+
     const [books, setBooks] = useState(null)
 
-    function handleChange(e) {
-        const q = e.target.value
-        axios.get(`${URL}${q}`)
-            .then(res => {
-                console.log('results ' + res.data.data)
-                setState({ results: res.data.data, query: q })
+    function getBooks(q) {
+        console.log(`${URL}${q}`)
+        fetch(`${URL}${q}`)
+            .then(async response => {
+                const data = await response.json();
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response statusText
+                    const error = (data && data.message) || response.statusText;
+                    console.log(error)
+                } else {
+                    setBooks({ results: data.items, query: q })
+                    console.log('results ' + data.items)
+                }
+            }).catch(err => {
+                err.text().then(errorMessage => {
+                    console.log(errorMessage)
+                })
             })
     }
-
-    return (
-        <div>
-            <Search handleChange={handleChange} />
-            <Results data={state.results} />
-        </div>
-    )
-    const getBooks = async () => {
-        try {
-            console.log(URL)
-            const response = await fetch(URL);
-            const data = await response.json();
-            console.log(data)
-            setShowShip(data);
-
-        } catch (error) {
-            console.log(error)
-        }
-    };
+    function handleChange(e) {
+        getBooks(e.target.value)
+    }
 
     useEffect(() => {
-        getShip();
+        getBooks('default');
     }, [])
 
     const loaded = () => {
         return (
-            <div class="ship">
-                <br/>Name: {showShip.name}
-                <br/>Model: {showShip.model}
-                <br/>Manufacturer: {showShip.manufacturer}
+            <div>
+                <BookSearch handleChange={handleChange} />
+                <BookShop books={books.results} />
             </div>
         )
     };
@@ -58,5 +48,7 @@ function BookShopPage() {
     const loading = () => {
         return <h1>Loading...</h1>;
     };
-    return showShip ? loaded() : loading();
+    return books ? loaded() : loading();
 }
+
+export default BookShopPage;

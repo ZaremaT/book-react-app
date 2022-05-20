@@ -1,8 +1,8 @@
-import {useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function Section(props) {
     return (<div>
-        <Link to="/${props.link}">{props.name}</Link>
+        <Link to={props.link}>{props.name}</Link>
     </div> )
 }
 
