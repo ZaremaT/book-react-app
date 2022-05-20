@@ -6,9 +6,11 @@ import BookShopPage from './pages/BookShop';
 import BookPage from './pages/BookPage';
 import Main from './pages/Main';
 
+
 function App() {
   return (
     <Routes>
+      <Stylesheet />
       <Route path='/' element={<Main/>} />
       <Route path='/shop' element={<BookShopPage />} />
       <Route path='/wall' element={<BookWall />} />
