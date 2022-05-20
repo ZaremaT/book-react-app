@@ -55,9 +55,8 @@ function BookPage() {
     }
 
     useEffect(() => {
-        console.log(id)
         getBook(id.id);
-    }, [])
+    }, [id])
 
     const loaded = () => {
         return (
