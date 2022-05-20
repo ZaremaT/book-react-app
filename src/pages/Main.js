@@ -11,7 +11,6 @@ return (
     <div>
         <Section link="shop" name="Shop"/>
         <Section link="wall" name="Book Wall"/>
-        <Section link="club" name="Book Club"/>
     </div>
 )
 }
