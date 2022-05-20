@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Book from '../components/BookComponent';
 import { useParams } from "react-router-dom";
-import Stylesheets from './components/Stylesheet'
+
 
 function BookPage() {
     const BACKEND_URL = 'https://obscure-chamber-02994.herokuapp.com'
