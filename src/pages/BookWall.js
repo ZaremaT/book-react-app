@@ -1,12 +1,15 @@
 import {useParams} from 'react-router-dom'
 
+
+
 function BookWall() {
     let params = useParams()
-    console.log(params)
+    console.log(index)
+    let book = props.book[index]
 return (
-    <>
-    <h1>“So many books, so little time.” </h1>
-    </>
+    <div>
+    <h3>(book.title) </h3>
+    </div>
 )
 }
 
